@@ -59,17 +59,17 @@ ui <- dashboardPage(
                 ),
                 
                 textInput(
-                          "pietext",
-                          "Text Input",
-                          value = "Default Title",
-                          placeholder = "Enter Your Title Here"
-                          ),
+                  "pietext",
+                  "Text Input",
+                  value = "Default Title",
+                  placeholder = "Enter Your Title Here"
+                ),
                 
                 checkboxInput("pieChoice", 
                               " I want a Pie Chart instead.", 
                               value = FALSE)
               ),
-
+              
               box(
                 title = "Graphical Output",
                 solidHeader = TRUE,
@@ -131,11 +131,11 @@ ui <- dashboardPage(
             fluidRow(
               box(tableOutput("tabledf2")),
               box(background="blue",
-                plotOutput("histPlot1"))
+                  plotOutput("histPlot1"))
             ))
-      )),
-      title = "Dashboard Sampler",
-      skin = "yellow"
+  )),
+  title = "Dashboard Sampler",
+  skin = "yellow"
 )
 
 ##### Server logic to draw histogram
@@ -165,7 +165,7 @@ server <- shinyServer(function(input, output) {
     barplot( x, names.arg = c("Phase I", "Phase II", "Phase III", "Fellows"),
              col = c("deeppink1", "deeppink2", "deeppink3", "deeppink4"),
              ylim = c(0,50)
-             )
+    )
   })
   
   #### Where input of file happens
@@ -174,7 +174,7 @@ server <- shinyServer(function(input, output) {
   })
   
   histData <- reactive ({
-    file <- input$file
+    file1 <- input$file
     read.csv(file1$datapath, header = TRUE, SEP=",")
   })
   
@@ -182,7 +182,7 @@ server <- shinyServer(function(input, output) {
     histData()
   })
   
-  output$hisstPlot1 <- renderPlot({
+  output$histPlot1 <- renderPlot({
     hist(as.numeric(histData()$X1))
   })
   
