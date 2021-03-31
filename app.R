@@ -31,7 +31,7 @@ ui <- dashboardPage(
       ),
       menuItem(
         "Upload a Histogram File",
-        tabName = "Upload-hist",
+        tabName = "Upload_hist",
         icon = icon("bar-chart"),
         badgeLabel = "Live"
       )
@@ -175,7 +175,7 @@ server <- shinyServer(function(input, output) {
   
   histData <- reactive ({
     file1 <- input$file
-    read.csv(file1$datapath, header = TRUE, SEP=",")
+    read.csv(file1$datapath, header = TRUE, sep=",")
   })
   
   output$tabledf2 <- renderTable({
